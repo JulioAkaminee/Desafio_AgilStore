@@ -1,0 +1,9 @@
+[
+  {
+    "id": 1,
+    "nome": "mouse",
+    "categoria": "periférico",
+    "quantidade_em_estoque": 30,
+    "preco": 30
+  }
+]

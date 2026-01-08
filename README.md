@@ -127,9 +127,4 @@ Escolha uma opção:
 - O sistema valida entradas de dados para garantir a integridade das informações
 - Todas as operações fornecem feedback visual no terminal
 
-## Autor
-
-**Julio Akamine**
-
-Projeto desenvolvido em janeiro de 2026 como desafio de programação para a **Aceleradora Ágil**.
 

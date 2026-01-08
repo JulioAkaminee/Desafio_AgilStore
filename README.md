@@ -6,7 +6,7 @@ O sistema permite cadastrar, listar, atualizar, excluir e buscar produtos atrav�
 
 Este projeto foi desenvolvido como exercício de programação, seguindo os requisitos propostos no enunciado.
 
----
+
 
 ## Funcionalidades
 
@@ -23,7 +23,6 @@ O sistema oferece as seguintes operações:
 
 
 
----
 
 ## Tecnologias Utilizadas
 
@@ -34,7 +33,7 @@ O sistema oferece as seguintes operações:
 | **readline** | Módulo para interação via terminal |
 | **fs** | Módulo para manipulação de arquivos |
 
----
+
 
 ## Estrutura do Projeto
 ```
@@ -55,7 +54,7 @@ Desafio_AgilStore/
 └── README.md
 ```
 
-### Descrição dos Diretórios
+## Descrição dos Diretórios
 
 | Diretório | Descrição |
 |-----------|-----------|
@@ -64,7 +63,6 @@ Desafio_AgilStore/
 | **utils/** | Utilitários auxiliares, como formatação de terminal |
 | **index.js** | Arquivo principal que inicia a aplicação |
 
----
 
 ## Como Executar o Projeto
 
@@ -92,7 +90,7 @@ cd Desafio_AgilStore
 node index.js
 ```
 
----
+
 
 ## Como Usar o Menu Interativo
 
@@ -120,7 +118,7 @@ Escolha uma opção:
 
 > O sistema guiará você através de cada operação com instruções claras e mensagens de confirmação.
 
----
+
 
 ## Observações Técnicas
 
@@ -128,8 +126,6 @@ Escolha uma opção:
 - Os IDs são gerados sequencialmente de forma automática
 - O sistema valida entradas de dados para garantir a integridade das informações
 - Todas as operações fornecem feedback visual no terminal
-
----
 
 ## Autor
 

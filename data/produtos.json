@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "id": 1,
+    "nome": "teclado gamer",
+    "categoria": "informatica",
+    "quantidade_em_estoque": 6,
+    "preco": 243.9
+  }
+]

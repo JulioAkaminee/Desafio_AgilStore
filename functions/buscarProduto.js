@@ -99,7 +99,7 @@ function exibirProduto(produto) {
 ID: ${produto.id}
 Nome: ${produto.nome}
 Categoria: ${produto.categoria}
-Quantidade: ${produto.quantidade}
+Quantidade: ${produto.quantidade_em_estoque}
 Preço: R$ ${produto.preco.toFixed(2).replace(".", ",")}
 -----------------------------
 `);

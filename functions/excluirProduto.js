@@ -1,35 +1,69 @@
 const salvarProdutos = require("./salvarProdutos");
-const mostrarMenu = require("../index");
 const estiloTerminal = require("../utils/estiloTerminal");
 
 function excluirProduto(rl, produtos, mostrarMenu) {
+  if (!produtos.length) {
+    console.log(
+      `${estiloTerminal.fundoVermelho}Não há produtos cadastrados!${estiloTerminal.reset}`
+    );
+    return mostrarMenu();
+  }
+
   rl.question("Digite o ID do produto que deseja excluir: ", (id) => {
-    const idNumero = Number(id);
-
-    const indice = produtos.findIndex((p) => p.id === idNumero);
-
-    if (indice === -1) {
-      console.log(`${estiloTerminal.fundoVermelho}\nProduto não encontrado! ${estiloTerminal.reset}`);
+    if (!id.trim()) {
+      console.log(
+        `${estiloTerminal.fundoVermelho}ID não pode ser vazio!${estiloTerminal.reset}`
+      );
       return mostrarMenu();
     }
 
+    if (isNaN(id)) {
+      console.log(
+        `${estiloTerminal.fundoVermelho}ID inválido!${estiloTerminal.reset}`
+      );
+      return mostrarMenu();
+    }
+
+    const idNumero = Number(id);
+    const indice = produtos.findIndex(p => p.id === idNumero);
+
+    if (indice === -1) {
+      console.log(
+        `${estiloTerminal.fundoVermelho}\nProduto não encontrado!${estiloTerminal.reset}`
+      );
+      return mostrarMenu();
+    }
+
+    const produto = produtos[indice];
+
     console.log(`
 Produto encontrado:
-ID: ${produtos[indice].id}
-Nome: ${produtos[indice].nome}
-Categoria: ${produtos[indice].categoria}
-Quantidade em estoque: ${produtos[indice].quantidade_estoque}
-Preco: ${produtos[indice].preco}
+ID: ${produto.id}
+Nome: ${produto.nome}
+Categoria: ${produto.categoria}
+Quantidade em estoque: ${produto.quantidade_em_estoque}
+Preço: R$ ${produto.preco.toFixed(2).replace(".", ",")}
 `);
 
     rl.question("Tem certeza que deseja excluir? (s/n): ", (confirmacao) => {
+      if (!confirmacao.trim()) {
+        console.log(
+          `${estiloTerminal.fundoVermelho}Resposta não pode ser vazia!${estiloTerminal.reset}`
+        );
+        return mostrarMenu();
+      }
+
       if (confirmacao.toLowerCase() === "s") {
         produtos.splice(indice, 1);
         salvarProdutos(produtos);
 
-        console.log(`${estiloTerminal.fundoVerde}\nProduto excluído com sucesso!${estiloTerminal.reset}`);
+        console.log(
+          `${estiloTerminal.fundoVerde}\nProduto excluído com sucesso!${estiloTerminal.reset}`
+        );
       } else {
-        console.log("\nExclusão cancelada.");
+        console.log(
+          `${estiloTerminal.fundoVermelho}\nExclusão cancelada.${estiloTerminal.reset}`
+        );
       }
 
       mostrarMenu();

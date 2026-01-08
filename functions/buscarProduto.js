@@ -1,8 +1,10 @@
-const voltarMenu = require("../index");
+const estiloTerminal = require("../utils/estiloTerminal");
 
 function buscarProduto(rl, produtos, voltarMenu) {
   if (!produtos.length) {
-    console.log("Não há produtos cadastrados!");
+    console.log(
+      `${estiloTerminal.fundoVermelho}Não há produtos cadastrados!${estiloTerminal.reset}`
+    );
     return voltarMenu();
   }
 
@@ -14,6 +16,13 @@ Buscar produto por:
 `);
 
   rl.question("Escolha uma opção: ", (opcao) => {
+    if (!opcao.trim()) {
+      console.log(
+        `${estiloTerminal.fundoVermelho}Opção não pode ser vazia!${estiloTerminal.reset}`
+      );
+      return voltarMenu();
+    }
+
     switch (opcao) {
       case "1":
         buscarPorId(rl, produtos, voltarMenu);
@@ -28,7 +37,9 @@ Buscar produto por:
         break;
 
       default:
-        console.log("Opção inválida!");
+        console.log(
+          `${estiloTerminal.fundoVermelho}Opção inválida!${estiloTerminal.reset}`
+        );
         voltarMenu();
     }
   });
@@ -36,10 +47,19 @@ Buscar produto por:
 
 function buscarPorId(rl, produtos, voltarMenu) {
   rl.question("Digite o ID do produto: ", (id) => {
-    const produto = produtos.find(p => String(p.id) === id);
+    if (!id.trim()) {
+      console.log(
+        `${estiloTerminal.fundoVermelho}ID não pode ser vazio!${estiloTerminal.reset}`
+      );
+      return voltarMenu();
+    }
+
+    const produto = produtos.find(p => String(p.id) === id.trim());
 
     if (!produto) {
-      console.log("Produto não encontrado!");
+      console.log(
+        `${estiloTerminal.fundoVermelho}Produto não encontrado!${estiloTerminal.reset}`
+      );
       return voltarMenu();
     }
 
@@ -50,12 +70,21 @@ function buscarPorId(rl, produtos, voltarMenu) {
 
 function buscarPorNome(rl, produtos, voltarMenu) {
   rl.question("Digite o nome do produto: ", (nome) => {
+    if (!nome.trim()) {
+      console.log(
+        `${estiloTerminal.fundoVermelho}Nome não pode ser vazio!${estiloTerminal.reset}`
+      );
+      return voltarMenu();
+    }
+
     const encontrados = produtos.filter(p =>
-      p.nome.toLowerCase().includes(nome.toLowerCase())
+      p.nome.toLowerCase().includes(nome.trim().toLowerCase())
     );
 
     if (!encontrados.length) {
-      console.log("Nenhum produto encontrado!");
+      console.log(
+        `${estiloTerminal.fundoVermelho}Nenhum produto encontrado!${estiloTerminal.reset}`
+      );
       return voltarMenu();
     }
 
@@ -71,7 +100,7 @@ ID: ${produto.id}
 Nome: ${produto.nome}
 Categoria: ${produto.categoria}
 Quantidade: ${produto.quantidade}
-Preço: R$ ${produto.preco.toFixed(2)}
+Preço: R$ ${produto.preco.toFixed(2).replace(".", ",")}
 -----------------------------
 `);
 }
